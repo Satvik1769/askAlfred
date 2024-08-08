@@ -1,14 +1,19 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import NavigationBar from './NavigationBar';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
 
 const SwapInterface = () => {
-
   const navigate = useNavigate();
+  const navigation = [
+    { name: "Home", href: "/", current: false },
+    { name: "Portfolio", href: "#", current: false },
+    { name: "Swap", href: "/SwapInterface", current: true },
+    { name: "Predict", href: "#", current: false },
+  ];
 
   return (
-    <div className='relative'>
-    <NavigationBar/>
+    <div className="relative">
+      <NavigationBar navigation={navigation} />
       <div className="flex justify-center items-center h-screen bg-gray-900">
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white w-96">
           <div className="flex justify-between items-center mb-4">
@@ -25,7 +30,12 @@ const SwapInterface = () => {
                 <option>ETH</option>
                 <option>BTC</option>
               </select>
-              <input type="number" className="bg-transparent border-none text-right text-white flex-grow focus:outline-none" value="0.000000" readOnly />
+              <input
+                type="number"
+                className="bg-transparent border-none text-right text-white flex-grow focus:outline-none"
+                value="0.000000"
+                readOnly
+              />
             </div>
           </div>
           <div className="mb-4">
@@ -36,7 +46,12 @@ const SwapInterface = () => {
                 <option>BTC</option>
                 <option>USDT</option>
               </select>
-              <input type="number" className="bg-transparent border-none text-right text-white flex-grow focus:outline-none" value="0" readOnly />
+              <input
+                type="number"
+                className="bg-transparent border-none text-right text-white flex-grow focus:outline-none"
+                value="0"
+                readOnly
+              />
             </div>
           </div>
           <button className="w-full py-2 bg-blue-600 rounded mt-2">Swap</button>
