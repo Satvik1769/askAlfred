@@ -19,14 +19,18 @@ const SwapInterface = () => {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Swap</h2>
             <div className="flex space-x-2">
-              <button className="px-2 py-1 bg-gray-700 rounded">Swap</button>
-              <button className="px-2 py-1 bg-gray-700 rounded">Limit</button>
+              <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300">
+                Swap
+              </button>
+              <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300">
+                Limit
+              </button>
             </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm">You pay</label>
-            <div className="flex items-center bg-gray-700 p-2 rounded mt-1">
-              <select className="bg-transparent border-none text-white focus:outline-none">
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2">You pay</label>
+            <div className="flex items-center bg-gray-700 p-3 rounded focus-within:ring-2 focus-within:ring-blue-500">
+              <select className="bg-transparent border-none text-white focus:outline-none flex-shrink-0">
                 <option>ETH</option>
                 <option>BTC</option>
               </select>
@@ -38,10 +42,12 @@ const SwapInterface = () => {
               />
             </div>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm">You receive</label>
-            <div className="flex items-center bg-gray-700 p-2 rounded mt-1">
-              <select className="bg-transparent border-none text-white focus:outline-none">
+          <div className="mb-6">
+            <label className="block text-sm font-medium mb-2">
+              You receive
+            </label>
+            <div className="flex items-center bg-gray-700 p-3 rounded focus-within:ring-2 focus-within:ring-blue-500">
+              <select className="bg-transparent border-none text-white focus:outline-none flex-shrink-0">
                 <option>Select a token</option>
                 <option>BTC</option>
                 <option>USDT</option>
@@ -54,7 +60,9 @@ const SwapInterface = () => {
               />
             </div>
           </div>
-          <button className="w-full py-2 bg-blue-600 rounded mt-2">Swap</button>
+          <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded transition duration-300">
+            Swap
+          </button>
         </div>
       </div>
     </div>
