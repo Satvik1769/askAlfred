@@ -1,0 +1,70 @@
+#cloud {
+  width: 750px;
+  height: 170px;
+  background: #f2f9fe;
+  background: linear-gradient(#f2f9fe 5%, #d6f0fd 100%);
+  border-radius: 100px;
+  position: relative;
+  padding: 20px; /* Added padding to the cloud */
+  box-sizing: border-box;
+  margin: 0 auto; /* Center horizontally */
+}
+body {
+  background: #020617;
+}
+
+#cloud:after,
+#cloud:before {
+  content: "";
+  position: absolute;
+  background: #f2f9fe;
+  z-index: -1;
+}
+
+#cloud:after {
+  width: 200px;
+  height: 200px;
+  top: -80px;
+  left: 50px;
+  border-radius: 100px;
+}
+
+#cloud:before {
+  width: 260px;
+  height: 260px;
+  top: -140px;
+  right: 50px;
+  border-radius: 200px;
+}
+
+.middle-circle {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: -140px;
+  left: 240px;
+  background: #f2f9fe;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.shadow {
+  width: 300px;
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  background: #000;
+  z-index: -2;
+  box-shadow: 0 0 25px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+}
+
+.cloud-text {
+  text-align: center; /* Centers the text */
+  padding: 10px 20px; /* Adds padding inside the text box */
+  margin: 0 auto; /* Centers the text container horizontally */
+  width: 80%; /* Sets a width to control the text block */
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+}

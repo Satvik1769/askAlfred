@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import SwapInterface from "./components/SwapInterface";
 import LoginSignup from "./components/LoginSignup";
+import Predict from "./components/Predict";
 
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 
@@ -77,7 +78,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/prediction" element={<SwapInterface />} />
+        <Route path="/predict" element={<Predict />} />
         <Route path="/SwapInterface" element={<SwapInterface />} />
         <Route path="/login" element={<LoginSignup />} />
       </Routes>

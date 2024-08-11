@@ -130,7 +130,7 @@ const Home = () => {
     { name: "Home", href: "/", current: true },
     { name: "Portfolio", href: "#", current: false },
     { name: "Swap", href: "/SwapInterface", current: false },
-    { name: "Predict", href: "#", current: false },
+    { name: "Predict", href: "/predict", current: false },
   ];
 
   return (
@@ -156,12 +156,13 @@ const Home = () => {
               for a billionaire!
             </p>
           </div>
-          <img
-            src="/alfred2.png"
-            alt="Alfred the butler"
-            className="h-550 animate-fadeInRight "
-            style={{ width: "850px" }}
-          />
+          <div className="flex lg:max-w-[600px] md:w-full justify-center">
+            <img
+              src="/alfred2.png"
+              alt="Alfred the butler"
+              className="lg:w-[300px] md:w-[200px] animate-fadeInRight "
+            />
+          </div>
         </div>
         <div
           className="flex flex-col-reverse lg:flex-row  justify-center lg:items-center w-full mt-20"

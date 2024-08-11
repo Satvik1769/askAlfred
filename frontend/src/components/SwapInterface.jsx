@@ -8,7 +8,7 @@ const SwapInterface = () => {
     { name: "Home", href: "/", current: false },
     { name: "Portfolio", href: "#", current: false },
     { name: "Swap", href: "/SwapInterface", current: true },
-    { name: "Predict", href: "#", current: false },
+    { name: "Predict", href: "/predict", current: false },
   ];
 
   return (
