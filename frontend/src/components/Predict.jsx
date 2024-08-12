@@ -1,6 +1,7 @@
 import ImagePopup from "./ImagePopup";
 import NavigationBar from "./NavigationBar";
 import { useState } from "react";
+import "../image.css";
 
 export default function Predict() {
   const navigation = [
@@ -61,31 +62,16 @@ export default function Predict() {
             {/* White Circular Divs */}
             <div
               className="bg-white rounded-full absolute"
-              style={{
-                width: "10px",
-                height: "10px",
-                top: "40px",
-                left: "830px",
-              }}
+              id="circular1"
             ></div>
             <div
               className="bg-white rounded-full absolute"
-              style={{
-                width: "20px",
-                height: "20px",
-                top: "30px",
-                left: "765px",
-              }}
+              id="circular2"
             ></div>
 
             <div
               className="bg-white rounded-full absolute"
-              style={{
-                width: "30px",
-                height: "30px",
-                top: "50px",
-                left: "700px",
-              }}
+              id="circular3"
             ></div>
 
             <img src="/alfred2.png" style={{ height: "550px" }} />
