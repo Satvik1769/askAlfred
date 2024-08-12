@@ -7,9 +7,10 @@ const Typewriter = ({ text, speed }) => {
   return <p>{displayText}</p>;
 };
 
-const ImagePopup = ({ isVisible, setIsVisible }) => {
+const ImagePopup = ({ isVisible, setIsVisible, open }) => {
   const handleButtonClick = () => {
     setIsVisible(!isVisible);
+    open({ view: "Account" });
   };
 
   return (

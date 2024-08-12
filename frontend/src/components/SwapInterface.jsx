@@ -13,6 +13,16 @@ const SwapInterface = () => {
     { name: "Predict", href: "/predict", current: false },
   ];
   const [isVisible, setIsVisible] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+  const [inputNumber, setInputNumber] = useState(0);
+  console.log(open);
+  const handleNumberChange = (event) => {
+    setInputNumber(event.target.value);
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   const handleButtonClick = () => {
     console.log("clicked");
@@ -26,30 +36,20 @@ const SwapInterface = () => {
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white w-96">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Swap</h2>
-            <div className="flex space-x-2">
-              <button
-                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300"
-                onClick={handleButtonClick}
-              >
-                Swap
-              </button>
-              <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300">
-                Limit
-              </button>
-            </div>
           </div>
           <div className="mb-6">
-            <label className="block text-sm font-medium mb-2">You pay</label>
+            <label className="block text-sm font-medium mb-2">Your Token</label>
             <div className="flex items-center bg-gray-700 p-3 rounded focus-within:ring-2 focus-within:ring-blue-500">
-              <select className="bg-transparent border-none text-white focus:outline-none flex-shrink-0">
+              <select className="bg-slate-700 border-none text-white focus:outline-none flex-shrink-0">
                 <option>ETH</option>
                 <option>BTC</option>
               </select>
               <input
                 type="number"
                 className="bg-transparent border-none text-right text-white flex-grow focus:outline-none"
-                value="0.000000"
-                readOnly
+                placeholder="0"
+                value={inputValue}
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -58,15 +58,16 @@ const SwapInterface = () => {
               You receive
             </label>
             <div className="flex items-center bg-gray-700 p-3 rounded focus-within:ring-2 focus-within:ring-blue-500">
-              <select className="bg-transparent border-none text-white focus:outline-none flex-shrink-0">
-                <option>Select a token</option>
+              <select className="bg-slate-700 border-none text-white focus:outline-none flex-shrink-0">
+                <option>Select token</option>
                 <option>BTC</option>
                 <option>USDT</option>
               </select>
               <input
                 type="number"
-                className="bg-transparent border-none text-right text-white flex-grow focus:outline-none"
-                value="0"
+                className="bg-transparent border-none text-right w-[100%] text-white focus:outline-none"
+                placeholder="0"
+                value={inputNumber}
                 readOnly
               />
             </div>

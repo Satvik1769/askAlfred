@@ -1,5 +1,6 @@
 import ImagePopup from "./ImagePopup";
 import NavigationBar from "./NavigationBar";
+import { useWeb3Modal } from "@web3modal/ethers/react";
 import { useState } from "react";
 import "../image.css";
 
@@ -12,6 +13,7 @@ export default function Predict() {
   ];
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const { open, close } = useWeb3Modal();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -57,7 +59,11 @@ export default function Predict() {
           style={{ outline: "2px solid red" }}
         >
           <div className="relative flex sm:flex-row flex-col items-center">
-            <ImagePopup isVisible={isVisible} setIsVisible={setIsVisible} />
+            <ImagePopup
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              open={() => open({ view: "OnRampProviders" })}
+            />
             <div>
               <div
                 className="bg-white rounded-full absolute"
