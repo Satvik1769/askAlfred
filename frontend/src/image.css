@@ -9,6 +9,9 @@
   box-sizing: border-box;
   margin: 0 auto; /* Center horizontally */
 }
+#alfred {
+  height: 550px;
+}
 body {
   background: #020617;
 }
@@ -106,7 +109,9 @@ body {
     left: 50px;
     border-radius: 100px;
   }
-
+  #alfred {
+    width: 400px;
+  }
   #cloud:before {
     width: 0px;
     height: 0px;
@@ -124,7 +129,7 @@ body {
   }
 
   #cloud {
-    width: 750px;
+    width: 650px;
     height: 200px;
     padding: 10px;
   }
@@ -145,7 +150,7 @@ body {
   #cloud:after {
     width: 200px;
     height: 200px;
-    top: -80px;
+    top: -50px;
     left: 50px;
     border-radius: 100px;
   }
@@ -159,28 +164,32 @@ body {
   }
 
   .middle-circle {
-    width: 230px;
-    height: 230px;
+    width: 0px;
+    height: 0px;
     position: absolute;
     top: -80px;
     left: 220px;
   }
 
   #cloud {
-    width: 750px;
+    width: 90%;
     height: 200px;
     padding: 10px;
   }
   #circular1 {
-    top: 65px;
-    left: 550px;
+    top: 305px;
+    left: 300px;
   }
   #circular2 {
-    top: 50px;
-    left: 500px;
+    top: 275px;
+    left: 325px;
   }
   #circular3 {
-    top: 65px;
-    left: 450px;
+    top: 225px;
+    left: 315px;
+  }
+  #alfred {
+    height: 350px;
+    width: 200px;
   }
 }

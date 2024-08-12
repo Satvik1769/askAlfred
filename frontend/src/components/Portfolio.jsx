@@ -12,7 +12,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <div className="relative">
       <NavigationBar navigation={navigation} />
 
       <div className="min-h-screen bg-gray-900 text-white flex items-centre">

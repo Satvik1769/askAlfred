@@ -56,25 +56,25 @@ export default function Predict() {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
           style={{ outline: "2px solid red" }}
         >
-          <div className="relative flex items-center">
+          <div className="relative flex sm:flex-row flex-col items-center">
             <ImagePopup isVisible={isVisible} setIsVisible={setIsVisible} />
+            <div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular2"
+              ></div>
 
-            {/* White Circular Divs */}
-            <div
-              className="bg-white rounded-full absolute"
-              id="circular1"
-            ></div>
-            <div
-              className="bg-white rounded-full absolute"
-              id="circular2"
-            ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular3"
+              ></div>
 
-            <div
-              className="bg-white rounded-full absolute"
-              id="circular3"
-            ></div>
-
-            <img src="/alfred2.png" style={{ height: "550px" }} />
+              <img src="/alfred2.png" id="alfred" />
+            </div>
           </div>
         </div>
       )}
