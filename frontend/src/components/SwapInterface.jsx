@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
+import ImagePopup from "./ImagePopup";
+import "../image.css";
 
 const SwapInterface = () => {
   const navigate = useNavigate();
@@ -10,6 +12,12 @@ const SwapInterface = () => {
     { name: "Swap", href: "/SwapInterface", current: true },
     { name: "Predict", href: "/predict", current: false },
   ];
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleButtonClick = () => {
+    console.log("clicked");
+    setIsVisible(!isVisible);
+  };
 
   return (
     <div className="relative">
@@ -19,7 +27,10 @@ const SwapInterface = () => {
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-semibold">Swap</h2>
             <div className="flex space-x-2">
-              <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300">
+              <button
+                className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300"
+                onClick={handleButtonClick}
+              >
                 Swap
               </button>
               <button className="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded transition duration-300">
@@ -60,11 +71,41 @@ const SwapInterface = () => {
               />
             </div>
           </div>
-          <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded transition duration-300">
+          <button
+            className="w-full py-3 bg-blue-600 hover:bg-blue-700 rounded transition duration-300"
+            onClick={() => handleButtonClick()}
+          >
             Swap
           </button>
         </div>
       </div>
+      {isVisible && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+          style={{ outline: "2px solid red" }}
+        >
+          <div className="relative flex sm:flex-row flex-col items-center">
+            <ImagePopup isVisible={isVisible} setIsVisible={setIsVisible} />
+            <div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular2"
+              ></div>
+
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular3"
+              ></div>
+
+              <img src="/alfred2.png" id="alfred" />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
