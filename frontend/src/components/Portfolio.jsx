@@ -2,8 +2,16 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavigationBar from './NavigationBar';
 
-function App() {
+function Portfolio() {
     const navigate = useNavigate();
+
+    const navigation = [
+        { name: "Home", href: "/", current: false },
+        { name: "Portfolio", href: "Portfolio", current: false },
+        { name: "Swap", href: "/SwapInterface", current: true },
+        { name: "Predict", href: "/predict", current: false },
+      ];
+    
     return (
         <div className="min-h-screen bg-gray-900 text-white flex items-centre">
         <div className="ml-64 w-full p-8">
@@ -57,5 +65,5 @@ function App() {
     );
 }
 
-export default App;
+export default Portfolio;
 

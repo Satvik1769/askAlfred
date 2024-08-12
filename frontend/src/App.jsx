@@ -7,7 +7,6 @@ import Predict from "./components/Predict";
 
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
 import Portfolio from './components/Portfolio';
-import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 
 const projectId = "706c0e5d6907e805a993314784e2c63d";
 
