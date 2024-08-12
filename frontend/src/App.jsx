@@ -53,8 +53,8 @@ const metadata = {
   name: "askAlfred",
   description:
     "Meet Alfred your very own wise butler who will help you in finding the tokens that are going to make you Bruce Wayne.",
-  url: "http://localhost:5173",
-  icons: ["http://localhost:5173/cropped_image.png"],
+  url: "https://ask-alfred.vercel.app/",
+  icons: ["https://ask-alfred.vercel.app/cropped_image.png"],
 };
 
 const ethersConfig = defaultConfig({
