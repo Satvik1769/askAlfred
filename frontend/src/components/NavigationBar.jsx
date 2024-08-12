@@ -9,6 +9,16 @@ function ConnectButton() {
   return <w3m-button />;
 }
 
+<<<<<<< HEAD
+const navigation = [
+  { name: 'Home', href: '/', current: true },
+  { name: 'Portfolio', href: '/Portfolio', current: false },
+  { name: 'Swap', href: '/SwapInterface', current: false },
+  { name: 'Predict', href: '#', current: false },
+];
+
+=======
+>>>>>>> 9fc92958356b1936b63031f34d6c64e33ca10bfa
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
