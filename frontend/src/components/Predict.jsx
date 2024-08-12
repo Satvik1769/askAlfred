@@ -6,7 +6,7 @@ import "../image.css";
 export default function Predict() {
   const navigation = [
     { name: "Home", href: "/", current: false },
-    { name: "Portfolio", href: "#", current: false },
+    { name: "Portfolio", href: "/portfolio", current: false },
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: true },
   ];
