@@ -5,10 +5,6 @@ import SwapInterface from "./components/SwapInterface";
 import LoginSignup from "./components/LoginSignup";
 import Predict from "./components/Predict";
 
-import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
-import Portfolio from "./components/Portfolio";
-=======
-
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
 import Portfolio from './components/Portfolio';
 
