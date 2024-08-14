@@ -1,16 +1,19 @@
 import ImagePopup from "./ImagePopup";
 import NavigationBar from "./NavigationBar";
+import { useWeb3Modal } from "@web3modal/ethers/react";
 import { useState } from "react";
+import "../image.css";
 
 export default function Predict() {
   const navigation = [
     { name: "Home", href: "/", current: false },
-    { name: "Portfolio", href: "#", current: false },
+    { name: "Portfolio", href: "/portfolio", current: false },
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: true },
   ];
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const { open, close } = useWeb3Modal();
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -55,40 +58,29 @@ export default function Predict() {
           className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
           style={{ outline: "2px solid red" }}
         >
-          <div className="relative flex items-center">
-            <ImagePopup isVisible={isVisible} setIsVisible={setIsVisible} />
+          <div className="relative flex sm:flex-row flex-col items-center">
+            <ImagePopup
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              open={() => open({ view: "OnRampProviders" })}
+            />
+            <div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular2"
+              ></div>
 
-            {/* White Circular Divs */}
-            <div
-              className="bg-white rounded-full absolute"
-              style={{
-                width: "10px",
-                height: "10px",
-                top: "40px",
-                left: "830px",
-              }}
-            ></div>
-            <div
-              className="bg-white rounded-full absolute"
-              style={{
-                width: "20px",
-                height: "20px",
-                top: "30px",
-                left: "765px",
-              }}
-            ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular3"
+              ></div>
 
-            <div
-              className="bg-white rounded-full absolute"
-              style={{
-                width: "30px",
-                height: "30px",
-                top: "50px",
-                left: "700px",
-              }}
-            ></div>
-
-            <img src="/alfred2.png" style={{ height: "550px" }} />
+              <img src="/alfred2.png" id="alfred" />
+            </div>
           </div>
         </div>
       )}

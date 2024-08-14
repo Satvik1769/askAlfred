@@ -9,8 +9,41 @@
   box-sizing: border-box;
   margin: 0 auto; /* Center horizontally */
 }
+#alfred {
+  height: 550px;
+}
 body {
   background: #020617;
+}
+
+#circular1 {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 40px;
+  left: 820px;
+  background-color: white;
+  z-index: 10; /* Ensures it's above other elements */
+}
+
+#circular2 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 30px;
+  left: 765px;
+  background-color: white;
+  z-index: 10; /* Ensures it's above other elements */
+}
+
+#circular3 {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50px;
+  left: 700px;
+  background-color: white;
+  z-index: 10; /* Ensures it's above other elements */
 }
 
 #cloud:after,
@@ -67,4 +100,96 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #000;
+}
+@media screen and (max-width: 1020px) {
+  #cloud:after {
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    left: 50px;
+    border-radius: 100px;
+  }
+  #alfred {
+    width: 400px;
+  }
+  #cloud:before {
+    width: 0px;
+    height: 0px;
+    top: -10px;
+    right: 50px;
+    border-radius: 100px;
+  }
+
+  .middle-circle {
+    width: 230px;
+    height: 230px;
+    position: absolute;
+    top: -80px;
+    left: 220px;
+  }
+
+  #cloud {
+    width: 650px;
+    height: 200px;
+    padding: 10px;
+  }
+  #circular1 {
+    top: 65px;
+    left: 550px;
+  }
+  #circular2 {
+    top: 50px;
+    left: 500px;
+  }
+  #circular3 {
+    top: 65px;
+    left: 450px;
+  }
+}
+@media screen and (max-width: 560px) {
+  #cloud:after {
+    width: 200px;
+    height: 200px;
+    top: -50px;
+    left: 50px;
+    border-radius: 100px;
+  }
+
+  #cloud:before {
+    width: 0px;
+    height: 0px;
+    top: -10px;
+    right: 50px;
+    border-radius: 100px;
+  }
+
+  .middle-circle {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top: -80px;
+    left: 220px;
+  }
+
+  #cloud {
+    width: 90%;
+    height: 200px;
+    padding: 10px;
+  }
+  #circular1 {
+    top: 305px;
+    left: 300px;
+  }
+  #circular2 {
+    top: 275px;
+    left: 325px;
+  }
+  #circular3 {
+    top: 225px;
+    left: 315px;
+  }
+  #alfred {
+    height: 350px;
+    width: 200px;
+  }
 }

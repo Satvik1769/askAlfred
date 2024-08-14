@@ -5,10 +5,14 @@ import SwapInterface from "./components/SwapInterface";
 import LoginSignup from "./components/LoginSignup";
 import Predict from "./components/Predict";
 
+import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
+import Portfolio from "./components/Portfolio";
+=======
+
 import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
 import Portfolio from './components/Portfolio';
 
-const projectId = "706c0e5d6907e805a993314784e2c63d";
+const projectId = import.meta.env.VITE_APP_KIT_PROJECT_ID;
 
 const mainnet = {
   chainId: 1,
@@ -54,8 +58,8 @@ const metadata = {
   name: "askAlfred",
   description:
     "Meet Alfred your very own wise butler who will help you in finding the tokens that are going to make you Bruce Wayne.",
-  url: "https://localhost:5173",
-  icons: ["https://localhost:5173/cropped_image.png"],
+  url: "https://ask-alfred.vercel.app/",
+  icons: ["https://ask-alfred.vercel.app/cropped_image.png"],
 };
 
 const ethersConfig = defaultConfig({
