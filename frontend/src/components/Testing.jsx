@@ -48,7 +48,7 @@ export default function Testing() {
     <>
       <main>
         {w3iClientIsLoading ? (
-          <div className="text-white">Loading W3I Client</div>
+          <div className="text-white">Loading W3I Clients</div>
         ) : (
           <div>
             <h1 className="text-white">W3I QuickStart</h1>
