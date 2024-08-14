@@ -128,7 +128,9 @@ const Home = () => {
   ];
   const navigation = [
     { name: "Home", href: "/", current: true },
+
     { name: "Portfolio", href: "/portfolio", current: false },
+
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: false },
   ];

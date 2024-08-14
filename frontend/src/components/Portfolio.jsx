@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 
-function App() {
+function Portfolio() {
   const navigate = useNavigate();
   const navigation = [
     { name: "Home", href: "/", current: false },
@@ -68,4 +68,4 @@ function App() {
   );
 }
 
-export default App;
+export default Portfolio;
