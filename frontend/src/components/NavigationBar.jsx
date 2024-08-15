@@ -10,13 +10,6 @@ function ConnectButton() {
 }
 
 
-=======
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Portfolio', href: '/Portfolio', current: false },
-  { name: 'Swap', href: '/SwapInterface', current: false },
-  { name: 'Predict', href: '#', current: false },
-];
 
 
 function classNames(...classes) {

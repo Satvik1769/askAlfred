@@ -130,8 +130,6 @@ const Home = () => {
     { name: "Home", href: "/", current: true },
 
     { name: "Portfolio", href: "/portfolio", current: false },
-=======
-    { name: "Portfolio", href: "/Portfolio", current: false },
 
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: false },

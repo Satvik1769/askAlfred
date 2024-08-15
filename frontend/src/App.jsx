@@ -4,15 +4,13 @@ import Home from "./components/Home";
 import SwapInterface from "./components/SwapInterface";
 import LoginSignup from "./components/LoginSignup";
 import Predict from "./components/Predict";
-
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import Portfolio from "./components/Portfolio";
-=======
-
-import { createWeb3Modal, defaultConfig } from '@web3modal/ethers/react'
-import Portfolio from './components/Portfolio';
+import Testing from "./components/Testing";
+import { initWeb3InboxClient } from "@web3inbox/react";
 
 const projectId = import.meta.env.VITE_APP_KIT_PROJECT_ID;
+const appDomain = import.meta.env.VITE_PUBLIC_APP_DOMAIN;
 
 const mainnet = {
   chainId: 1,
@@ -78,6 +76,12 @@ createWeb3Modal({
   enableAnalytics: true,
 });
 
+initWeb3InboxClient({
+  projectId,
+  domain: appDomain,
+  allApps: process.env.NODE_ENV !== "production",
+});
+
 const App = () => {
   return (
     <Router>
@@ -87,6 +91,7 @@ const App = () => {
         <Route path="/SwapInterface" element={<SwapInterface />} />
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/login" element={<LoginSignup />} />
+        <Route path="/testing" element={<Testing />} />
       </Routes>
     </Router>
   );
