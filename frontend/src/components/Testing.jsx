@@ -42,10 +42,13 @@ export default function Testing() {
   const handleRegistration = async () => {
     try {
       const { message, registerParams } = await prepareRegistration();
+      console.log("prepareRegistration result:", { message, registerParams });
       if (typeof message !== "string") {
         throw new Error("Registration message is not a string");
       }
       const signature = await onSignMessage(message);
+      console.log("onSignMessage result:", signature);
+
       await register({ registerParams, signature });
       console.log("Registration Successful");
     } catch (registerIdentityError) {
@@ -62,6 +65,20 @@ export default function Testing() {
     }
   };
 
+  const handleSubscription = async () => {
+    try {
+      if (isSubscribed) {
+        await unsubscribe();
+        console.log("Unsubscription Successful");
+      } else {
+        await subscribe();
+        console.log("Subscription Successful");
+      }
+    } catch (subscribeError) {
+      console.error("Subscription Error:", subscribeError);
+    }
+  };
+
   return (
     <main>
       {w3iClientIsLoading ? (
@@ -73,7 +90,7 @@ export default function Testing() {
           <div>
             <button
               onClick={handleRegistration}
-              disabled={isRegistered}
+              disabled={isRegistered || isRegistering}
               className="text-white mx-10"
             >
               {isRegistered ? "Registered" : "Register"}
@@ -86,7 +103,7 @@ export default function Testing() {
               {isRegistered ? "Unregister" : "Already Unregistered"}
             </button>
             <button
-              onClick={isSubscribed ? unsubscribe : subscribe}
+              onClick={handleSubscription}
               disabled={isSubscribing || isUnsubscribing}
               className="text-white"
             >
