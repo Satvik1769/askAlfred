@@ -79,7 +79,7 @@ createWeb3Modal({
 initWeb3InboxClient({
   projectId,
   domain: appDomain,
-  allApps: process.env.NODE_ENV !== "production",
+  allApps: true,
 });
 
 const App = () => {
