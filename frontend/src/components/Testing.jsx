@@ -21,14 +21,15 @@ export default function Testing() {
     const provider = new BrowserProvider(walletProvider);
     const signer = await provider.getSigner();
     const signature = await signer?.signMessage(message);
-    console.log(signature);
+    return signature;
   }
 
   const handleRegistration = async () => {
     try {
       const { message, registerParams } = await prepareRegistration();
-      console.log(message);
       const signature = await onSignMessage(message);
+      console.log(signature);
+
       await register({ registerParams, signature });
     } catch (registerIdentityError) {
       console.error(registerIdentityError);
