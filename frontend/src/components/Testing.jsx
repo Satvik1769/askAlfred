@@ -28,7 +28,7 @@ export default function Testing() {
     try {
       const { message, registerParams } = await prepareRegistration();
       console.log(message);
-      const signature = await onSignMessage({ message: message });
+      const signature = await onSignMessage(message);
       await register({ registerParams, signature });
     } catch (registerIdentityError) {
       console.error(registerIdentityError);
