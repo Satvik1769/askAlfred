@@ -17,6 +17,18 @@ export default function Testing() {
   const { address } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
 
+  const { prepareRegistration } = usePrepareRegistration();
+  const { register, isLoading: isRegistering } = useRegister();
+  const { data: w3iClient, isLoading: w3iClientIsLoading } =
+    useWeb3InboxClient();
+  const { isRegistered } = useWeb3InboxAccount(`eip155:1:${address}`);
+  const { subscribe, isLoading: isSubscribing } = useSubscribe();
+  const { unsubscribe, isLoading: isUnsubscribing } = useUnsubscribe();
+  const { data: subscription } = useSubscription();
+  const isSubscribed = Boolean(subscription);
+  console.log("Account Address:", address);
+  console.log("Is Registered:", isRegistered);
+
   async function onSignMessage(message) {
     const provider = new BrowserProvider(walletProvider);
     const signer = await provider.getSigner();
@@ -28,23 +40,11 @@ export default function Testing() {
     try {
       const { message, registerParams } = await prepareRegistration();
       const signature = await onSignMessage(message);
-      console.log(signature);
-
       await register({ registerParams, signature });
     } catch (registerIdentityError) {
       console.error(registerIdentityError);
     }
   };
-  const { prepareRegistration } = usePrepareRegistration();
-  const { register, isLoading: isRegistering } = useRegister();
-  const { data: w3iClient, isLoading: w3iClientIsLoading } =
-    useWeb3InboxClient();
-  const { isRegistered } = useWeb3InboxAccount(`eip155:1:${address}`);
-  const { subscribe, isLoading: isSubscribing } = useSubscribe();
-  const { unsubscribe, isLoading: isUnsubscribing } = useUnsubscribe();
-  const { data: subscription } = useSubscription();
-  const isSubscribed = Boolean(subscription);
-  console.log(isRegistered, isSubscribed);
 
   return (
     <>
