@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 
 const Card = ({ discordId, xId, githubId, name, text, imageNumber }) => {
@@ -111,7 +110,6 @@ const Footer = () => {
 };
 
 const Home = () => {
-  const navigate = useNavigate();
   const networks = [
     "Ethereum",
     "BNB",
@@ -128,11 +126,10 @@ const Home = () => {
   ];
   const navigation = [
     { name: "Home", href: "/", current: true },
-
     { name: "Portfolio", href: "/portfolio", current: false },
-
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: false },
+    { name: "Notifications", href: "/notifications", current: false },
   ];
 
   return (

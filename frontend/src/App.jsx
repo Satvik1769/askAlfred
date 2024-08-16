@@ -8,6 +8,7 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import Portfolio from "./components/Portfolio";
 import Testing from "./components/Testing";
 import { initWeb3InboxClient } from "@web3inbox/react";
+import NotificationPage from "./components/NotificationPage";
 
 const projectId = import.meta.env.VITE_APP_KIT_PROJECT_ID;
 const appDomain = import.meta.env.VITE_PUBLIC_APP_DOMAIN;
@@ -92,6 +93,7 @@ const App = () => {
         <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/login" element={<LoginSignup />} />
         <Route path="/testing" element={<Testing />} />
+        <Route path="/notifications" element={<NotificationPage />} />
       </Routes>
     </Router>
   );

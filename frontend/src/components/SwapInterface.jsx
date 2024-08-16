@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import NavigationBar from "./NavigationBar";
 import ImagePopup from "./ImagePopup";
 import "../image.css";
 
 const SwapInterface = () => {
-  const navigate = useNavigate();
   const navigation = [
     { name: "Home", href: "/", current: false },
     { name: "Portfolio", href: "/portfolio", current: false },
     { name: "Swap", href: "/SwapInterface", current: true },
     { name: "Predict", href: "/predict", current: false },
+    { name: "Notifications", href: "/notifications", current: false },
   ];
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
