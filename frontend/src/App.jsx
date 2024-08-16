@@ -56,7 +56,7 @@ const metadata = {
   name: "askAlfred",
   description:
     "Meet Alfred your very own wise butler who will help you in finding the tokens that are going to make you Bruce Wayne.",
-  url: "https://ask-alfred.vercel.app/",
+  url: appDomain,
   icons: ["https://ask-alfred.vercel.app/cropped_image.png"],
 };
 
@@ -79,7 +79,7 @@ createWeb3Modal({
 initWeb3InboxClient({
   projectId,
   domain: appDomain,
-  allApps: process.env.NODE_ENV !== "production",
+  allApps: true,
 });
 
 const App = () => {

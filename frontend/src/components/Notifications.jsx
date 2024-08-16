@@ -1,5 +1,5 @@
 // Notifications.tsx
-import { useNotifications } from "@web3inbox/react";
+import { useNotifications, useSubscription } from "@web3inbox/react";
 import React from "react";
 
 function Notifications() {
@@ -15,16 +15,18 @@ function Notifications() {
           <p>No notifications yet.</p>
         ) : (
           notifications.map(({ id, ...message }) => (
-            <div key={id}>
-              <h3>{message.title}</h3>
-              <p>{message.body}</p>
-              <p>{message.isRead ? "Read" : "Unread"}</p>
+            <div className="text-white flex " key={id}>
+              <div>
+                <h3>{message.title}</h3>
+                <p>{message.body}</p>
+              </div>
+              <p className="">{message.isRead ? "Read" : "Unread"}</p>
               <button onClick={message.markAsRead}>Mark as read</button>
             </div>
           ))
         )}
       </div>
-      <button onClick={nextPage}>Next page</button>
+      <button className="text-white">Next page</button>
     </div>
   );
 }
