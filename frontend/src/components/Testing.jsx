@@ -7,7 +7,7 @@ import {
   useUnsubscribe,
   useSubscription,
   useWeb3InboxAccount,
-  useUnregister, // Import useUnregister
+  useUnregister,
 } from "@web3inbox/react";
 import Notifications from "./Notifications";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";

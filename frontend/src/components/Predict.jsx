@@ -10,6 +10,7 @@ export default function Predict() {
     { name: "Portfolio", href: "/portfolio", current: false },
     { name: "Swap", href: "/SwapInterface", current: false },
     { name: "Predict", href: "/predict", current: true },
+    { name: "Notifications", href: "/notifications", current: false },
   ];
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");

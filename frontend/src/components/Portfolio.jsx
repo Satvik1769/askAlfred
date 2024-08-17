@@ -6,9 +6,10 @@ function Portfolio() {
   const navigate = useNavigate();
   const navigation = [
     { name: "Home", href: "/", current: false },
-    { name: "Portfolio", href: "/portfolio", current: false },
+    { name: "Portfolio", href: "/portfolio", current: true },
     { name: "Swap", href: "/SwapInterface", current: false },
-    { name: "Predict", href: "/predict", current: true },
+    { name: "Predict", href: "/predict", current: false },
+    { name: "Notifications", href: "/notifications", current: false },
   ];
 
   return (
@@ -42,7 +43,7 @@ function Portfolio() {
               </button>
             </div>
           </div>
-  
+
           {/* Additional Sections */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
             <div className="bg-gray-800 p-8 rounded-lg shadow-lg text-center transform transition duration-300 hover:scale-105 hover:bg-gray-700">
@@ -74,5 +75,3 @@ function Portfolio() {
 }
 
 export default Portfolio;
-
-

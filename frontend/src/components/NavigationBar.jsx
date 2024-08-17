@@ -9,9 +9,6 @@ function ConnectButton() {
   return <w3m-button />;
 }
 
-
-
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -20,12 +17,12 @@ export default function NavigationBar({ navigation }) {
   return (
     <Disclosure
       as="nav"
-      className="sticky top-0 left-0 w-full bg-gray-800  z-50"
+      className="sticky top-0 left-0 w-full bg-gray-800 z-50"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="relative flex h-16 items-center justify-between">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            {/* Mobile menu button */}
+        <div className="relative flex h-20 items-center justify-between">
+          {/* Mobile and tablet menu button */}
+          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -39,7 +36,7 @@ export default function NavigationBar({ navigation }) {
               />
             </DisclosureButton>
           </div>
-          <div className="flex flex-1 items-center justify-evenly ml-12 sm:items-stretch sm:justify-between">
+          <div className="flex flex-1 items-center justify-evenly ml-12 lg:items-stretch lg:justify-between">
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="askAlfred"
@@ -48,7 +45,7 @@ export default function NavigationBar({ navigation }) {
               />
               <h2 className="text-slate-100 mx-2">askAlfred</h2>
             </div>
-            <div className="hidden sm:ml-6 sm:block">
+            <div className="hidden lg:ml-6 lg:block">
               <div className="flex justify-evenly space-x-4">
                 {navigation.map((item) => (
                   <a
@@ -72,7 +69,7 @@ export default function NavigationBar({ navigation }) {
         </div>
       </div>
 
-      <DisclosurePanel className="sm:hidden">
+      <DisclosurePanel className="lg:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
           {navigation.map((item) => (
             <DisclosureButton

@@ -20,13 +20,10 @@ function Notifications() {
                 <h3>{message.title}</h3>
                 <p>{message.body}</p>
               </div>
-              <p className="">{message.isRead ? "Read" : "Unread"}</p>
-              <button onClick={message.markAsRead}>Mark as read</button>
             </div>
           ))
         )}
       </div>
-      <button className="text-white">Next page</button>
     </div>
   );
 }
