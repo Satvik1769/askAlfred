@@ -177,6 +177,7 @@ export default function NotificationPage() {
   const { unsubscribe, isLoading: isUnsubscribing } = useUnsubscribe();
   const { data: subscription } = useSubscription();
   const { data: notifications } = useNotifications(5);
+  console.log(notifications);
 
   const isSubscribed = Boolean(subscription);
   const data_unregistered = [

@@ -9,6 +9,7 @@ import Portfolio from "./components/Portfolio";
 import Testing from "./components/Testing";
 import { initWeb3InboxClient } from "@web3inbox/react";
 import NotificationPage from "./components/NotificationPage";
+import { ToastContainer } from "react-toastify";
 
 const projectId = import.meta.env.VITE_APP_KIT_PROJECT_ID;
 const appDomain = import.meta.env.VITE_PUBLIC_APP_DOMAIN;
@@ -86,15 +87,18 @@ initWeb3InboxClient({
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/predict" element={<Predict />} />
-        <Route path="/SwapInterface" element={<SwapInterface />} />
-        <Route path="/Portfolio" element={<Portfolio />} />
-        <Route path="/login" element={<LoginSignup />} />
-        <Route path="/testing" element={<Testing />} />
-        <Route path="/notifications" element={<NotificationPage />} />
-      </Routes>
+      <div>
+        <ToastContainer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/predict" element={<Predict />} />
+          <Route path="/SwapInterface" element={<SwapInterface />} />
+          <Route path="/Portfolio" element={<Portfolio />} />
+          <Route path="/login" element={<LoginSignup />} />
+          <Route path="/testing" element={<Testing />} />
+          <Route path="/notifications" element={<NotificationPage />} />
+        </Routes>
+      </div>
     </Router>
   );
 };

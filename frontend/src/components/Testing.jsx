@@ -13,10 +13,15 @@ import Notifications from "./Notifications";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { BrowserProvider } from "ethers";
 import { useWeb3ModalProvider } from "@web3modal/ethers/react";
+import useSendNotification from "../hooks/useSendNotifications";
 
 export default function Testing() {
   const { address } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
+  const { handleSendNotification, isSending } = useSendNotification();
+
+  const date = "2024-08-18"; // Today's date
+  const time = "12:13"; // The time you want to schedule
 
   async function onSignMessage(message) {
     const provider = new BrowserProvider(walletProvider);
@@ -79,6 +84,33 @@ export default function Testing() {
     }
   };
 
+  const scheduleNotification = () => {
+    const selectedDateTime = new Date(`${date}T${time}`);
+    const now = new Date();
+    const delay = selectedDateTime - now;
+
+    if (delay > 0) {
+      setTimeout(async () => {
+        await handleSendNotification({
+          account: `eip155:1:${address}`,
+          notification: {
+            title: "Lord Save America !",
+            body: "This is a test for America",
+            icon: `https://ask-alfred.vercel.app/cropped_image.png`,
+            url: "https://ask-alfred.vercel.app",
+            friendly_type: "Manual",
+            type: "5ad4b32a-4dc5-48e3-bba6-6c78b243220a",
+          },
+        });
+        console.log("Notification sent");
+      }, delay);
+    } else {
+      console.error(
+        "Selected time is in the past. Please choose a future time."
+      );
+    }
+  };
+
   return (
     <main>
       {w3iClientIsLoading ? (
@@ -108,6 +140,13 @@ export default function Testing() {
               className="text-white"
             >
               {isSubscribed ? "Unsubscribe" : "Subscribe"}
+            </button>
+            <button
+              className="text-white ml-10"
+              disabled={!isSubscribed || isSending}
+              onClick={scheduleNotification} // Directly calling the function
+            >
+              Send Notifications
             </button>
             <hr />
             {isSubscribed ? <Notifications /> : null}
