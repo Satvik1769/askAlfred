@@ -20,6 +20,7 @@ import {
 import { BrowserProvider } from "ethers";
 import { useWeb3ModalProvider } from "@web3modal/ethers/react";
 import Notifications from "./Notifications";
+import NotificationData from "./NotificationData";
 
 const Card = ({ data, text }) => {
   return (
@@ -305,28 +306,7 @@ export default function NotificationPage() {
                 className="mt-9 grid gap-2.5 p-2 justify-items-center"
               >
                 <div className="w-[90%] flex flex-col max-h-[65vh] overflow-y-auto">
-                  {!notifications?.length && (
-                    <p className="text-white">No notifications yet.</p>
-                  )}
-
-                  {notifications.map(({ id, ...message }) => (
-                    <div
-                      key={id}
-                      className="flex items-center w-full p-3.5 mt-2 rounded-lg bg-gray-700 text-white border border-gray-500 hover:bg-gray-600"
-                    >
-                      <img
-                        src="/cropped_image.png"
-                        alt="Notification"
-                        className="h-12"
-                      />
-                      <div className="ml-4">
-                        <h1 className="text-white text-lg font-medium">
-                          {message.title}
-                        </h1>
-                        <p className="text-gray-400">{message.body}</p>
-                      </div>
-                    </div>
-                  ))}
+                  <NotificationData handleButtonClick={handleButtonClick} />
                 </div>
               </div>
             </div>

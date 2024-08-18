@@ -20,7 +20,7 @@ export default function Predict() {
   const { handleSendNotification, isSending } = useSendNotification();
 
   const date = "2024-08-18"; // Today's date
-  const time = "12:38"; // The time you want to schedule
+  const time = "22:49"; // The time you want to schedule
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
