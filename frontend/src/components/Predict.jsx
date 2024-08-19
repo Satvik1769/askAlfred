@@ -3,6 +3,8 @@ import NavigationBar from "./NavigationBar";
 import { useWeb3Modal } from "@web3modal/ethers/react";
 import { useState } from "react";
 import "../image.css";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
+import useSendNotification from "../hooks/useSendNotifications";
 
 export default function Predict() {
   const navigation = [
@@ -14,7 +16,11 @@ export default function Predict() {
   ];
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { open, close } = useWeb3Modal();
+  const { address } = useWeb3ModalAccount();
+  const { handleSendNotification, isSending } = useSendNotification();
+
+  const date = "2024-08-18"; // Today's date
+  const time = "22:49"; // The time you want to schedule
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -22,6 +28,33 @@ export default function Predict() {
 
   const handleButtonClick = () => {
     setIsVisible(!isVisible);
+  };
+
+  const scheduleNotification = () => {
+    const selectedDateTime = new Date(`${date}T${time}`);
+    const now = new Date();
+    const delay = selectedDateTime - now;
+
+    if (delay > 0) {
+      setTimeout(async () => {
+        await handleSendNotification({
+          account: `eip155:1:${address}`,
+          notification: {
+            title: "Lord Save India!",
+            body: "This is a test for delhi",
+            icon: `https://ask-alfred.vercel.app/cropped_image.png`,
+            url: "https://ask-alfred.vercel.app",
+            friendly_type: "Manual",
+            type: "5ad4b32a-4dc5-48e3-bba6-6c78b243220a",
+          },
+        });
+        console.log("Notification sent");
+      }, delay);
+    } else {
+      console.error(
+        "Selected time is in the past. Please choose a future time."
+      );
+    }
   };
 
   return (
@@ -63,7 +96,7 @@ export default function Predict() {
             <ImagePopup
               isVisible={isVisible}
               setIsVisible={setIsVisible}
-              open={() => open({ view: "OnRampProviders" })}
+              sendNotification={scheduleNotification}
             />
             <div>
               <div
