@@ -1,9 +1,8 @@
 import ImagePopup from "./ImagePopup";
 import NavigationBar from "./NavigationBar";
-import { useWeb3Modal } from "@web3modal/ethers/react";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useState } from "react";
 import "../image.css";
-import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import useSendNotification from "../hooks/useSendNotifications";
 
 export default function Predict() {
@@ -14,14 +13,12 @@ export default function Predict() {
     { name: "Predict", href: "/predict", current: true },
     { name: "Notifications", href: "/notifications", current: false },
   ];
+
   const [isVisible, setIsVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const { address } = useWeb3ModalAccount();
   const { handleSendNotification, isSending } = useSendNotification();
-
-  const date = "2024-08-18"; // Today's date
-  const time = "22:49"; // The time you want to schedule
-
+  const { address } = useWeb3ModalAccount();
+  
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -30,31 +27,19 @@ export default function Predict() {
     setIsVisible(!isVisible);
   };
 
-  const scheduleNotification = () => {
-    const selectedDateTime = new Date(`${date}T${time}`);
-    const now = new Date();
-    const delay = selectedDateTime - now;
-
-    if (delay > 0) {
-      setTimeout(async () => {
-        await handleSendNotification({
-          account: `eip155:1:${address}`,
-          notification: {
-            title: "Lord Save India!",
-            body: "This is a test for delhi",
-            icon: `https://ask-alfred.vercel.app/cropped_image.png`,
-            url: "https://ask-alfred.vercel.app",
-            friendly_type: "Manual",
-            type: "5ad4b32a-4dc5-48e3-bba6-6c78b243220a",
-          },
-        });
-        console.log("Notification sent");
-      }, delay);
-    } else {
-      console.error(
-        "Selected time is in the past. Please choose a future time."
-      );
-    }
+  const scheduleNotification = async () => {
+    await handleSendNotification({
+      account: `eip155:1:${address}`,
+      notification: {
+        title: "Lord Save India!",
+        body: "This is a test for delhi",
+        icon: `https://ask-alfred.vercel.app/cropped_image.png`,
+        url: "https://ask-alfred.vercel.app",
+        friendly_type: "Manual",
+        type: "5ad4b32a-4dc5-48e3-bba6-6c78b243220a",
+      },
+    });
+    console.log("Notification scheduled");
   };
 
   return (
@@ -99,20 +84,9 @@ export default function Predict() {
               sendNotification={scheduleNotification}
             />
             <div>
-              <div
-                className="bg-white rounded-full absolute"
-                id="circular1"
-              ></div>
-              <div
-                className="bg-white rounded-full absolute"
-                id="circular2"
-              ></div>
-
-              <div
-                className="bg-white rounded-full absolute"
-                id="circular3"
-              ></div>
-
+              <div className="bg-white rounded-full absolute" id="circular1"></div>
+              <div className="bg-white rounded-full absolute" id="circular2"></div>
+              <div className="bg-white rounded-full absolute" id="circular3"></div>
               <img src="/alfred2.png" id="alfred" />
             </div>
           </div>

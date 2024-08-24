@@ -21,3 +21,4 @@ export default function useTypewriter(text, speed = 50) {
 
   return displayText;
 }
+
