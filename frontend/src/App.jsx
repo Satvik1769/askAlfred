@@ -11,6 +11,7 @@ import { initWeb3InboxClient } from "@web3inbox/react";
 import NotificationPage from "./components/NotificationPage";
 import { ToastContainer } from "react-toastify";
 import { NotificationProvider } from "./Context/NotificationContext";
+import { NameProvider } from "./Context/NameContext";
 
 const projectId = import.meta.env.VITE_APP_KIT_PROJECT_ID;
 const appDomain = import.meta.env.VITE_PUBLIC_APP_DOMAIN;
@@ -88,7 +89,7 @@ initWeb3InboxClient({
 const App = () => {
   return (
     <NotificationProvider>
-
+      <NameProvider>    
 
     <Router>
       <div>
@@ -104,6 +105,7 @@ const App = () => {
         </Routes>
       </div>
     </Router>
+    </NameProvider>
     </NotificationProvider>
 
   );
