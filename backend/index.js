@@ -11,7 +11,7 @@ mongoose.connect(mongo_url)
 const Name = require("./models/name.model")
 const Notification = require("./models/notification.model")
 app.use(express.json())
-app.use(cors())
+app.use(cors());
 const projectId=process.env.PROJECT_ID;
 const secretId=process.env.SECRET_ID;
 
@@ -20,15 +20,38 @@ app.get('/', (req, res) => {
 })
 
 app.post('/name',(req,res)=>{
+  console.log("start")
     const {name,address} = req.body;
     const newName = new Name({
         name,
         address
     })
     newName.save().then(()=>{
-        res.send("Name saved")
+        res.json({message:"Name saved"})
     })
 })
+app.get('/name/:address', (req, res) => {
+  const address = req.params.address; // Use req.params to get the address from the URL path
+  console.log(address);
+  // Find one name by address
+  Name.findOne({ address: address })
+    .then((name) => {
+      if (name) {
+        console.log(name)
+        // If a name is found, send it as JSON
+        res.json(name);
+      } else {
+        // If no name is found, send a 404 status with a message
+        res.status(404).json({ message: 'No name found for this address' });
+      }
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the query
+      console.error(error);
+      res.status(500).json({ message: 'An error occurred while processing your request' });
+    });
+});
+
 
 app.post('/scheduleNotification', async(req, res) => {
   const { date, time, notificationPayload } = req.body;
