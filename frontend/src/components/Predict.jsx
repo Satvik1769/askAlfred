@@ -4,8 +4,7 @@ import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useState, useEffect } from "react";
 import "../image.css";
 import useSendNotification from "../hooks/useSendNotifications";
-import { useName } from '../Context/NameContext';
-
+import { useName } from "../Context/NameContext";
 
 export default function Predict() {
   const navigation = [
@@ -22,40 +21,46 @@ export default function Predict() {
   const { address } = useWeb3ModalAccount();
 
   const { isConnected } = useWeb3ModalAccount();
-  const { isModalVisible, showModal, hideModal, handleInputChanges, handleSubmitName } = useName();
+  const {
+    isModalVisible,
+    showModal,
+    hideModal,
+    handleInputChanges,
+    handleSubmitName,
+  } = useName();
   useEffect(() => {
     const fetchData = async () => {
       if (isConnected) {
-
         try {
-  console.log(isConnected);
+          console.log(isConnected);
 
-          const response = await fetch(`http://localhost:3001/name/${address}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const response = await fetch(
+            `http://localhost:3001/name/${address}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
           const data = await response.json();
-          console.log(data)
-          if(response.status===404){
-            showModal()
+          console.log(data);
+          if (response.status === 404) {
+            showModal();
           }
-             
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error("Error fetching data:", error);
         }
-      }
-      else{
-        hideModal()
-        console.log("Modal Visibility:" + isModalVisible)
+      } else {
+        hideModal();
+        console.log("Modal Visibility:" + isModalVisible);
       }
     };
 
     fetchData();
   }, [isConnected, address]);
-  
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -121,18 +126,29 @@ export default function Predict() {
               sendNotification={scheduleNotification}
             />
             <div>
-              <div className="bg-white rounded-full absolute" id="circular1"></div>
-              <div className="bg-white rounded-full absolute" id="circular2"></div>
-              <div className="bg-white rounded-full absolute" id="circular3"></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular2"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute"
+                id="circular3"
+              ></div>
               <img src="/alfred2.png" id="alfred" />
             </div>
           </div>
         </div>
       )}
-          {isModalVisible && (
+      {isModalVisible && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-slate-900 p-6 rounded-lg shadow-lg text-white w-96">
-            <h3 className="text-lg font-semibold mb-4">What should I call you Master</h3>
+            <h3 className="text-lg font-semibold mb-4">
+              What should I call you Master
+            </h3>
             <input
               type="text"
               onChange={handleInputChanges}
@@ -145,7 +161,6 @@ export default function Predict() {
             >
               Submit
             </button>
-       
           </div>
         </div>
       )}

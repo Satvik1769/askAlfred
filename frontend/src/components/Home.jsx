@@ -2,8 +2,7 @@ import React from "react";
 import NavigationBar from "./NavigationBar";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useState, useEffect } from "react";
-import { useName } from '../Context/NameContext';
-
+import { useName } from "../Context/NameContext";
 
 const Card = ({ discordId, xId, githubId, name, text, imageNumber }) => {
   return (
@@ -138,40 +137,45 @@ const Home = () => {
   const { address } = useWeb3ModalAccount();
 
   const { isConnected } = useWeb3ModalAccount();
-  const { isModalVisible, showModal, hideModal, handleInputChanges, handleSubmitName } = useName();
+  const {
+    isModalVisible,
+    showModal,
+    hideModal,
+    handleInputChanges,
+    handleSubmitName,
+  } = useName();
   useEffect(() => {
     const fetchData = async () => {
       if (isConnected) {
-
         try {
-  console.log(isConnected);
+          console.log(isConnected);
 
-          const response = await fetch(`http://localhost:3001/name/${address}`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
+          const response = await fetch(
+            `http://localhost:3001/name/${address}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
 
           const data = await response.json();
-          console.log(data)
-          if(response.status===404){
-            showModal()
+          console.log(data);
+          if (response.status === 404) {
+            showModal();
           }
-             
         } catch (error) {
-          console.error('Error fetching data:', error);
+          console.error("Error fetching data:", error);
         }
-      }
-      else{
-        hideModal()
-        console.log("Modal Visibility:" + isModalVisible)
+      } else {
+        hideModal();
+        console.log("Modal Visibility:" + isModalVisible);
       }
     };
 
     fetchData();
   }, [isConnected, address]);
-  
 
   return (
     <div className="relative">
@@ -205,25 +209,26 @@ const Home = () => {
           </div>
         </div>
         {isModalVisible && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-slate-900 p-6 rounded-lg shadow-lg text-white w-96">
-            <h3 className="text-lg font-semibold mb-4">What should I call you Master</h3>
-            <input
-              type="text"
-              onChange={handleInputChanges}
-              className="border border-gray-300 bg-slate-700 p-2 text-white rounded-md w-full"
-              placeholder="Enter your name"
-            />
-            <button
-              onClick={handleSubmitName}
-              className="mt-4 p-2 bg-blue-500 text-white rounded-md"
-            >
-              Submit
-            </button>
-       
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-slate-900 p-6 rounded-lg shadow-lg text-white w-96">
+              <h3 className="text-lg font-semibold mb-4">
+                What should I call you Master
+              </h3>
+              <input
+                type="text"
+                onChange={handleInputChanges}
+                className="border border-gray-300 bg-slate-700 p-2 text-white rounded-md w-full"
+                placeholder="Enter your name"
+              />
+              <button
+                onClick={handleSubmitName}
+                className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+              >
+                Submit
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
         <div
           className="flex flex-col-reverse lg:flex-row  justify-center lg:items-center w-full mt-20"
           style={{ height: "600px" }}

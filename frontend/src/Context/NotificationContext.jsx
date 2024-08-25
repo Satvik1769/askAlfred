@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import React, { createContext, useContext, useEffect } from "react";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useWeb3InboxClient } from '@web3inbox/react';
+import { useWeb3InboxClient } from "@web3inbox/react";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 const NotificationContext = createContext();
@@ -15,31 +15,31 @@ export const NotificationProvider = ({ children }) => {
 
   const handleNotification = async ({ addressData }) => {
     try {
-    const currentDate = new Date();
+      const currentDate = new Date();
 
       const year = String(currentDate.getFullYear()).slice(-2);
       const month = currentDate.getMonth() + 1; // Months are zero-indexed
       const day = currentDate.getDate();
-      
+
       // Get the user's current timezone
       const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      
+
       const dateTime = new Date();
-      const formatter = new Intl.DateTimeFormat('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
         hour12: false, // Set to `true` for 12-hour time
         timeZone: userTimeZone, // Use the dynamically determined timezone
       });
-      
+
       const timeParts = formatter.formatToParts(dateTime);
-      const hours = timeParts.find(part => part.type === 'hour').value;
-      const minutes = timeParts.find(part => part.type === 'minute').value;
-      
+      const hours = timeParts.find((part) => part.type === "hour").value;
+      const minutes = timeParts.find((part) => part.type === "minute").value;
+
       console.log(`Time: ${hours}:${minutes}`);
       console.log(`User's Timezone: ${userTimeZone}`);
-      const time=`${hours}:${minutes}`
-      const date=`${day}-${month}-${year}`
+      const time = `${hours}:${minutes}`;
+      const date = `${day}-${month}-${year}`;
       const response = await fetch(`http://localhost:3001/notification`, {
         method: "DELETE",
         headers: {
@@ -61,29 +61,20 @@ export const NotificationProvider = ({ children }) => {
       });
     } catch (error) {
       console.error("Error deleting notification:", error);
-    //   toast.error(`Failed to delete notification: ${error.message}`, {
-    //     position: "top-center",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //   });
     }
   };
 
   useEffect(() => {
     if (client) {
-      const notifyHandler = () => handleNotification({  addressData });
+      const notifyHandler = () => handleNotification({ addressData });
 
-      client.on('notify_message', notifyHandler);
+      client.on("notify_message", notifyHandler);
 
       return () => {
-        client.off('notify_message', notifyHandler);
+        client.off("notify_message", notifyHandler);
       };
     }
-  }, [client,  addressData]);
+  }, [client, addressData]);
 
   return (
     <NotificationContext.Provider value={{}}>

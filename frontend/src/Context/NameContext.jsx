@@ -1,19 +1,18 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 const NameContext = createContext();
-import { useWeb3ModalAccount } from '@web3modal/ethers/react';
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 export const useName = () => useContext(NameContext);
 
 export const NameProvider = ({ children }) => {
-    const [isModalVisible, setIsModalVisible] = useState(false);
-  const [inputName, setInputName] = useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [inputName, setInputName] = useState("");
   const { address } = useWeb3ModalAccount();
-
 
   const showModal = () => setIsModalVisible(true);
   const hideModal = () => setIsModalVisible(false);
   const handleInputChanges = (event) => setInputName(event.target.value);
-  const handleSubmitName = async() => {
+  const handleSubmitName = async () => {
     // Handle the name submission logic here
     console.log("Name Submitted:", inputName);
     const response = await fetch(`http://localhost:3001/name`, {
@@ -28,20 +27,21 @@ export const NameProvider = ({ children }) => {
     });
 
     const data = await response.json();
-    console.log(data)
+    console.log(data);
     hideModal();
   };
 
-
   return (
-    <NameContext.Provider   value={{
+    <NameContext.Provider
+      value={{
         isModalVisible,
         inputName,
         showModal,
         hideModal,
         handleInputChanges,
-        handleSubmitName
-      }}>
+        handleSubmitName,
+      }}
+    >
       {children}
     </NameContext.Provider>
   );

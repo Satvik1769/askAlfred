@@ -89,25 +89,23 @@ initWeb3InboxClient({
 const App = () => {
   return (
     <NotificationProvider>
-      <NameProvider>    
-
-    <Router>
-      <div>
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/predict" element={<Predict />} />
-          <Route path="/SwapInterface" element={<SwapInterface />} />
-          <Route path="/Portfolio" element={<Portfolio />} />
-          <Route path="/login" element={<LoginSignup />} />
-          <Route path="/testing" element={<Testing />} />
-          <Route path="/notifications" element={<NotificationPage />} />
-        </Routes>
-      </div>
-    </Router>
-    </NameProvider>
+      <NameProvider>
+        <Router>
+          <div>
+            <ToastContainer />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/predict" element={<Predict />} />
+              <Route path="/SwapInterface" element={<SwapInterface />} />
+              <Route path="/Portfolio" element={<Portfolio />} />
+              <Route path="/login" element={<LoginSignup />} />
+              <Route path="/testing" element={<Testing />} />
+              <Route path="/notifications" element={<NotificationPage />} />
+            </Routes>
+          </div>
+        </Router>
+      </NameProvider>
     </NotificationProvider>
-
   );
 };
 

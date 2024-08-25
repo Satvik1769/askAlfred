@@ -4,8 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 function useSendNotification() {
   const [isSending, setIsSending] = useState(false);
-  const date="24-8-24";
-  const time="23:15";
+  const date = "24-8-24";
+  const time = "23:15";
 
   const handleSendNotification = useCallback(
     async ({ account, notification }) => {
@@ -23,14 +23,13 @@ function useSendNotification() {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({date,time,notificationPayload}),
+            body: JSON.stringify({ date, time, notificationPayload }),
           }
         );
 
         const gmRes = await result.json();
         console.log(gmRes);
         setIsSending(false);
-  
       } catch (error) {
         setIsSending(false);
         console.error({ sendNotificationError: error });
@@ -47,7 +46,7 @@ function useSendNotification() {
     },
     []
   );
- 
+
   return {
     handleSendNotification,
     isSending,
