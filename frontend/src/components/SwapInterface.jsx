@@ -18,13 +18,31 @@ const SwapInterface = () => {
   const [inputNumber, setInputNumber] = useState(0);
   const { address } = useWeb3ModalAccount();
 
+  const scheduleNotification = async () => {
+    await handleSendNotification({
+      account: `eip155:1:${address}`,
+      notification: {
+        title: "Lord Save India!",
+        body: "This is a test for delhi",
+        icon: `https://ask-alfred.vercel.app/cropped_image.png`,
+        url: "https://ask-alfred.vercel.app",
+        friendly_type: "Manual",
+        type: "5ad4b32a-4dc5-48e3-bba6-6c78b243220a",
+      },
+    });
+    console.log("Notification scheduled");
+  };
+
   const { isConnected } = useWeb3ModalAccount();
   const {
     isModalVisible,
+    isPopupVisible,
     showModal,
     hideModal,
     handleInputChanges,
     handleSubmitName,
+    hidePopupVisible,
+    inputName,
   } = useName();
   useEffect(() => {
     const fetchData = async () => {
@@ -168,6 +186,35 @@ const SwapInterface = () => {
             >
               Submit
             </button>
+          </div>
+        </div>
+      )}
+
+      {isPopupVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative flex sm:flex-row flex-col items-center">
+            <ImagePopup
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              sendNotification={scheduleNotification}
+              onClick={hidePopupVisible}
+              text={`Bonjour Master ${inputName}, I am Alfred your very own butler to help you in predicting and buying crypto with informed`}
+            />
+            <div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular2"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular3"
+              ></div>
+              <img src="/alfred2.png" id="alfred" />
+            </div>
           </div>
         </div>
       )}

@@ -23,10 +23,13 @@ export default function Predict() {
   const { isConnected } = useWeb3ModalAccount();
   const {
     isModalVisible,
+    isPopupVisible,
     showModal,
     hideModal,
     handleInputChanges,
     handleSubmitName,
+    hidePopupVisible,
+    inputName,
   } = useName();
   useEffect(() => {
     const fetchData = async () => {
@@ -161,6 +164,34 @@ export default function Predict() {
             >
               Submit
             </button>
+          </div>
+        </div>
+      )}
+      {isPopupVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative flex sm:flex-row flex-col items-center">
+            <ImagePopup
+              isVisible={isVisible}
+              setIsVisible={setIsVisible}
+              sendNotification={scheduleNotification}
+              onClick={hidePopupVisible}
+              text={`Bonjour Master ${inputName}, I am Alfred your very own butler to help you in predicting and buying crypto with informed`}
+            />
+            <div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular1"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular2"
+              ></div>
+              <div
+                className="bg-white rounded-full absolute "
+                id="circular3"
+              ></div>
+              <img src="/alfred2.png" id="alfred" />
+            </div>
           </div>
         </div>
       )}

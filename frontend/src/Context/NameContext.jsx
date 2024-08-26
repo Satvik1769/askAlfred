@@ -8,9 +8,11 @@ export const NameProvider = ({ children }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [inputName, setInputName] = useState("");
   const { address } = useWeb3ModalAccount();
-
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
   const showModal = () => setIsModalVisible(true);
   const hideModal = () => setIsModalVisible(false);
+  const showPopupVisible = () => setIsPopupVisible(true);
+  const hidePopupVisible = () => setIsPopupVisible(false);
   const handleInputChanges = (event) => setInputName(event.target.value);
   const handleSubmitName = async () => {
     // Handle the name submission logic here
@@ -29,15 +31,18 @@ export const NameProvider = ({ children }) => {
     const data = await response.json();
     console.log(data);
     hideModal();
+    showPopupVisible();
   };
-
   return (
     <NameContext.Provider
       value={{
         isModalVisible,
+        isPopupVisible,
         inputName,
         showModal,
         hideModal,
+        showPopupVisible,
+        hidePopupVisible,
         handleInputChanges,
         handleSubmitName,
       }}
