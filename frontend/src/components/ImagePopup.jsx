@@ -10,7 +10,13 @@ const Typewriter = ({ text, speed }) => {
   return <p>{displayText}</p>;
 };
 
-const ImagePopup = ({ isVisible, setIsVisible, sendNotification }) => {
+const ImagePopup = ({
+  isVisible,
+  setIsVisible,
+  sendNotification,
+  onClick,
+  text,
+}) => {
   const handleButtonClick = () => {
     setIsVisible(!isVisible);
     sendNotification();
@@ -33,11 +39,21 @@ const ImagePopup = ({ isVisible, setIsVisible, sendNotification }) => {
         <div class="middle-circle"></div>
         <div
           class="cloud-text"
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
-          <Typewriter text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+          <Typewriter
+            text={
+              text ||
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            }
+          />
           <div>
-            <button onClick={handleButtonClick}>Send Notification.</button>
+            <button onClick={onClick || handleButtonClick}>
+              {onClick ? "Close" : "Send Notification"}
+            </button>
           </div>
         </div>
       </div>
