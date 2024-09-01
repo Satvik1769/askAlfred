@@ -23,8 +23,6 @@ try {
   console.error(e);
 }
 
-import Moralis from 'moralis';
-
 try {
   await Moralis.start({
     apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImU3N2FkNGM4LWVlYjYtNGM5Yi1iMTVmLTQyYjliMWZjNGZlNSIsIm9yZ0lkIjoiNDAwODQyIiwidXNlcklkIjoiNDExODg3IiwidHlwZUlkIjoiOTcyODZkYzYtMDkyZi00OTAwLWFmNGEtZTdjODM1ZGYxMzNjIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MjE1NDA4ODksImV4cCI6NDg3NzMwMDg4OX0.OQKPvICBuOK_wuidY_ikmVVfN8Pd94u4qz9xVbFC5IQ"
