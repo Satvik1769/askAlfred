@@ -122,6 +122,27 @@ app.delete("/notification", async (req, res) => {
   }
 });
 
+app.get("/token/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const response = await fetch(
+      `https://api.1inch.dev/token/v1.2/${id}/token-list`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer 3bcy8xNjv2yBqKqFl7JhTp3g0e588AIM",
+        },
+      }
+    );
+
+    const data = await response.json();
+    res.json(data["tokens"]);
+  } catch (error) {
+    console.error("Error fetching chain data:", error);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
