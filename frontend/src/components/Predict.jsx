@@ -389,59 +389,77 @@ export default function Predict() {
       providers: ["1inch", "Curve Token List"],
     },
   };
+  const [walletTokens, setWalletTokens] = useState(null);
 
   const [selectedData, setSelectedData] = useState(tokenData[1]);
   const [tokensData, setTokensData] = useState(null);
 
   useEffect(() => {
-    // Check if chainId exists in tokenData
-    if (tokenData[chainId]) {
-      setSelectedData(tokenData[chainId]);
-    } else {
-      // Handle case where chainId is not in tokenData
-      setSelectedData(tokenData[1]);
-    }
-    const chainData = async () => {
-      if (chainId) {
-        console.log("Chain ID:", chainId);
-        try {
-          const response = await fetch(
-            `http://localhost:3001/token/${chainId}`,
-            {
-              method: "GET",
-            }
-          );
-
-          const data = await response.json();
-          setTokensData(data);
-          console.log(tokensData);
-        } catch (error) {
-          console.error("Error fetching chain data:", error);
-        }
-      }
-    };
-
-    const walletData = async () => {
+    const initializeMoralis = async () => {
       if (!Moralis.Core.isStarted) {
         try {
           await Moralis.start({
             apiKey: moralisApi,
           });
-
-          const response = await Moralis.EvmApi.token.getWalletTokenBalances({
-            chain: selectedData["chain"],
-            address: "0xc026395860Db2d07ee33e05fE50ed7bD583189C7",
-          });
-          console.log("response");
-
-          console.log(response.raw);
+          console.log("Moralis initialized");
         } catch (e) {
-          console.error(e);
+          console.error("Error initializing Moralis:", e);
         }
       }
     };
+
+    initializeMoralis();
+  }, []); // Empty dependency array to run only once
+
+  useEffect(() => {
+    if (!chainId) {
+      console.log("Waiting for chainId...");
+      return;
+    }
+
+    // Set selected token data based on chainId
+    if (tokenData[chainId]) {
+      setSelectedData(tokenData[chainId]);
+    } else {
+      setSelectedData(tokenData[1]); // Fallback
+    }
+
+    const chainData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/token/${chainId}`, {
+          method: "GET",
+        });
+        const data = await response.json();
+        setTokensData(data);
+      } catch (error) {
+        console.error("Error fetching chain data:", error);
+      }
+    };
+
     chainData();
-    walletData();
+  }, [chainId]);
+
+  // Fetch wallet tokens when selectedData changes
+  useEffect(() => {
+    const walletData = async () => {
+      if (selectedData && selectedData.chain) {
+        try {
+          console.log("Selected chain:", selectedData.chain);
+          const response = await Moralis.EvmApi.token.getWalletTokenBalances({
+            chain: selectedData.chain,
+            address: "0xc48Fb5F11f074A35e28376a59614E147Da5E24cc",
+          });
+          setWalletTokens(response.raw);
+          console.log("Wallet Tokens:", response.raw);
+        } catch (e) {
+          console.error("Error fetching wallet data:", e);
+        }
+      }
+    };
+
+    if (selectedData) {
+      walletData();
+    }
   }, [chainId]);
 
   const { isConnected } = useWeb3ModalAccount();
@@ -510,7 +528,10 @@ export default function Predict() {
     });
     console.log("Notification scheduled");
   };
-
+  const calculateTokenPrice = (token) => {
+    console.log("this is token:", token);
+    return 10;
+  };
   const Row = ({ index, style }) => {
     const token = tokensData[index];
     const combinedStyle = {
@@ -518,6 +539,11 @@ export default function Predict() {
       top: `${parseFloat(style.top) + 8}px`, // Adjust the top position to account for margin
       height: `${parseFloat(style.height) - 8}px`, // Adjust the height if needed
     };
+    const walletToken = walletTokens.find(
+      (walletToken) => walletToken.symbol === token.symbol
+    );
+    // Calculate the price if the walletToken exists, otherwise set it to 0
+    const price = walletToken ? calculateTokenPrice(walletToken) : 0;
 
     return (
       <div
@@ -536,7 +562,7 @@ export default function Predict() {
             <p className="text-xs text-gray-400">{token.symbol}</p>
           </div>
         </div>
-        <h2 className="text-white">0</h2>
+        <h2 className="text-white">{price}</h2>
       </div>
     );
   };
