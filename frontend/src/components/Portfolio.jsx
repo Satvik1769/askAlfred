@@ -5,41 +5,10 @@ import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useState, useEffect } from "react";
 import { useName } from "../Context/NameContext";
 import ImagePopup from "./ImagePopup";
-import Moralis from 'moralis';
-
-try {
-  await Moralis.start({
-    apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImU3N2FkNGM4LWVlYjYtNGM5Yi1iMTVmLTQyYjliMWZjNGZlNSIsIm9yZ0lkIjoiNDAwODQyIiwidXNlcklkIjoiNDExODg3IiwidHlwZUlkIjoiOTcyODZkYzYtMDkyZi00OTAwLWFmNGEtZTdjODM1ZGYxMzNjIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MjE1NDA4ODksImV4cCI6NDg3NzMwMDg4OX0.OQKPvICBuOK_wuidY_ikmVVfN8Pd94u4qz9xVbFC5IQ"
-  });
-
-  const response = await Moralis.EvmApi.token.getWalletTokenTransfers({
-    "chain": "0x1",
-    "order": "DESC",
-    "address": "0xD0193d86523981c46F0Df8B35B11456b49f9B63C"
-  });
-
-  console.log(response.raw);
-} catch (e) {
-  console.error(e);
-}
-
-try {
-  await Moralis.start({
-    apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImU3N2FkNGM4LWVlYjYtNGM5Yi1iMTVmLTQyYjliMWZjNGZlNSIsIm9yZ0lkIjoiNDAwODQyIiwidXNlcklkIjoiNDExODg3IiwidHlwZUlkIjoiOTcyODZkYzYtMDkyZi00OTAwLWFmNGEtZTdjODM1ZGYxMzNjIiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MjE1NDA4ODksImV4cCI6NDg3NzMwMDg4OX0.OQKPvICBuOK_wuidY_ikmVVfN8Pd94u4qz9xVbFC5IQ"
-  });
-
-  const response = await Moralis.EvmApi.balance.getNativeBalance({
-    "chain": "0x1",
-    "address": "0xD0193d86523981c46F0Df8B35B11456b49f9B63C"
-  });
-
-  console.log(response.raw);
-} catch (e) {
-  console.error(e);
-}
-
 
 function Portfolio() {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   const navigation = [
     { name: "Home", href: "/", current: false },
     { name: "Portfolio", href: "/portfolio", current: true },
@@ -81,15 +50,12 @@ function Portfolio() {
         try {
           console.log(isConnected);
 
-          const response = await fetch(
-            `http://localhost:3001/name/${address}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${backendUrl}/name/${address}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           const data = await response.json();
           console.log(data);
@@ -124,9 +90,7 @@ function Portfolio() {
               Decentralized accounts
             </h3>
             <div className="flex flex-col items-center mt-6 space-y-2">
-              <p className="text-5xl font-bold text-white-400">
-                $0.00
-              </p>
+              <p className="text-5xl font-bold text-white-400">$0.00</p>
               <span className="text-lg text-gray-400">(0.00%)</span>
             </div>
             <div className="flex justify-center mt-6 space-x-4">

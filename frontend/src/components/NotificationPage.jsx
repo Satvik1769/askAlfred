@@ -135,15 +135,12 @@ export default function NotificationPage() {
         try {
           console.log(isConnected);
 
-          const response = await fetch(
-            `http://localhost:3001/name/${address}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${backendUrl}/name/${address}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           const data = await response.json();
           console.log(data);
@@ -239,21 +236,20 @@ export default function NotificationPage() {
     });
     console.log("Notification scheduled");
   };
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       if (isConnected) {
         try {
           console.log(isConnected);
 
-          const response = await fetch(
-            `http://localhost:3001/name/${address}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${backendUrl}/name/${address}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           const data = await response.json();
           console.log(data);

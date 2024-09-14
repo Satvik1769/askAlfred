@@ -17,6 +17,7 @@ export default function Predict() {
     { name: "Notifications", href: "/notifications", current: false },
   ];
   const moralisApi = import.meta.env.VITE_MORALIS_API;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [isTokenModalVisible, setIsTokenModalVisible] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -424,10 +425,9 @@ export default function Predict() {
       setSelectedData(tokenData[1]); // Fallback
     }
 
-
     const chainData = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/token/${chainId}`, {
+        const response = await fetch(`${backendUrl}/token/${chainId}`, {
           method: "GET",
         });
         const data = await response.json();
@@ -438,24 +438,21 @@ export default function Predict() {
     };
 
     const walletData = async (chainId) => {
-        try {
-          const response = await Moralis.EvmApi.token.getWalletTokenBalances({
-            chain: chainId,
-            address: "0xc48Fb5F11f074A35e28376a59614E147Da5E24cc",
-          });
-          setWalletTokens(response.raw);
-          console.log("Wallet Tokens:", response.raw);
-        } catch (e) {
-          console.error("Error fetching wallet data:", e);
-        }
+      try {
+        const response = await Moralis.EvmApi.token.getWalletTokenBalances({
+          chain: chainId,
+          address: "0xc48Fb5F11f074A35e28376a59614E147Da5E24cc",
+        });
+        setWalletTokens(response.raw);
+        console.log("Wallet Tokens:", response.raw);
+      } catch (e) {
+        console.error("Error fetching wallet data:", e);
+      }
     };
 
     chainData();
-    walletData(tokenData[chainId].chain)
-
-    
+    walletData(tokenData[chainId].chain);
   }, [chainId]);
-
 
   const { isConnected } = useWeb3ModalAccount();
   const {
@@ -475,15 +472,12 @@ export default function Predict() {
         try {
           console.log(isConnected);
 
-          const response = await fetch(
-            `http://localhost:3001/name/${address}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${backendUrl}/name/${address}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           const data = await response.json();
           if (response.status === 404) {
@@ -524,7 +518,7 @@ export default function Predict() {
     console.log("Notification scheduled");
   };
   const calculateTokenPrice = (token) => {
-    return parseFloat(token.balance) / Math.pow(10, token.decimals)
+    return parseFloat(token.balance) / Math.pow(10, token.decimals);
   };
   const Row = ({ index, style }) => {
     const token = tokensData[index];

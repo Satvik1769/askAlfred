@@ -32,6 +32,7 @@ const SwapInterface = () => {
     });
     console.log("Notification scheduled");
   };
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const { isConnected } = useWeb3ModalAccount();
   const {
@@ -50,15 +51,12 @@ const SwapInterface = () => {
         try {
           console.log(isConnected);
 
-          const response = await fetch(
-            `http://localhost:3001/name/${address}`,
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(`${backendUrl}/name/${address}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
 
           const data = await response.json();
           console.log(data);
