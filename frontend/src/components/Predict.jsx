@@ -448,9 +448,7 @@ export default function Predict() {
         } catch (e) {
           console.error("Error fetching wallet data:", e);
         }
-      
     };
-
 
     chainData();
     walletData(tokenData[chainId].chain)
@@ -526,8 +524,7 @@ export default function Predict() {
     console.log("Notification scheduled");
   };
   const calculateTokenPrice = (token) => {
-    console.log("this is token:", token);
-    return 10;
+    return parseFloat(token.balance) / Math.pow(10, token.decimals)
   };
   const Row = ({ index, style }) => {
     const token = tokensData[index];
