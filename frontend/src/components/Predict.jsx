@@ -424,6 +424,7 @@ export default function Predict() {
       setSelectedData(tokenData[1]); // Fallback
     }
 
+
     const chainData = async () => {
       try {
         const response = await fetch(`http://localhost:3001/token/${chainId}`, {
@@ -436,17 +437,10 @@ export default function Predict() {
       }
     };
 
-    chainData();
-  }, [chainId]);
-
-  // Fetch wallet tokens when selectedData changes
-  useEffect(() => {
-    const walletData = async () => {
-      if (selectedData && selectedData.chain) {
+    const walletData = async (chainId) => {
         try {
-          console.log("Selected chain:", selectedData.chain);
           const response = await Moralis.EvmApi.token.getWalletTokenBalances({
-            chain: selectedData.chain,
+            chain: chainId,
             address: "0xc48Fb5F11f074A35e28376a59614E147Da5E24cc",
           });
           setWalletTokens(response.raw);
@@ -454,13 +448,16 @@ export default function Predict() {
         } catch (e) {
           console.error("Error fetching wallet data:", e);
         }
-      }
+      
     };
 
-    if (selectedData) {
-      walletData();
-    }
+
+    chainData();
+    walletData(tokenData[chainId].chain)
+
+    
   }, [chainId]);
+
 
   const { isConnected } = useWeb3ModalAccount();
   const {
