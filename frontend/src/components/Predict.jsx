@@ -77,7 +77,7 @@ export default function Predict() {
       try {
         const response = await Moralis.EvmApi.token.getWalletTokenBalances({
           chain: chainId,
-          address: "0xc48Fb5F11f074A35e28376a59614E147Da5E24cc",
+          address: address,
         });
         setWalletTokens(response.raw);
         console.log("Wallet Tokens:", response.raw);
