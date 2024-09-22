@@ -4,7 +4,6 @@ import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useState, useEffect } from "react";
 import { useName } from "../Context/NameContext";
 import ImagePopup from "./ImagePopup";
-
 const Card = ({ discordId, xId, githubId, name, text, imageNumber }) => {
   return (
     <section class="lg:w-[430px] md:max-w-[400px] my-10 h-full ml-12 relative bg-[#231f39]/60 rounded-[6px] shadow-[0px_15px_39px_16px_rgba(52,45,91,0.65)] backdrop-blur-sm mx-2 overflow-hidden">
@@ -221,7 +220,7 @@ const Home = () => {
           </div>
           <div className="flex lg:max-w-[600px] md:w-full justify-center">
             <img
-              src="/alfred2.png"
+              src="/src/assets/alfred2.png"
               alt="Alfred the butler"
               className="lg:w-[300px] md:w-[200px] animate-fadeInRight "
             />
@@ -271,7 +270,7 @@ const Home = () => {
                   className="bg-white rounded-full absolute "
                   id="circular3"
                 ></div>
-                <img src="/alfred2.png" id="alfred" />
+                <img src="/src/assets/alfred2.png" id="alfred" />
               </div>
             </div>
           </div>
@@ -282,7 +281,7 @@ const Home = () => {
         >
           <div className="flex justify-center">
             <img
-              src="/portfolio.webp"
+              src="/src/assets/portfolio.webp"
               alt="Portfolio"
               className=" mt-20 w-400 lg:h-200 md:w-200 animate-fadeInLeft "
               style={{ height: "350px", width: "600px" }}
@@ -321,7 +320,10 @@ const Home = () => {
             {networks.map((network) => {
               return (
                 <div class="flex flex-col text-white items-center text-center">
-                  <img src={`/${network}.webp`} style={{ height: 100 }} />
+                  <img
+                    src={`/src/assets/${network}.webp`}
+                    style={{ height: 100 }}
+                  />
                   <h1>{network}</h1>
                 </div>
               );

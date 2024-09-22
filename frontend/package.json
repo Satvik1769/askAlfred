@@ -2,10 +2,10 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "main": "./out/main/main.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "electron-vite dev -w",
+    "build": "electron-vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

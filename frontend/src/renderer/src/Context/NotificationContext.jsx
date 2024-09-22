@@ -11,6 +11,7 @@ export const useNotification = () => useContext(NotificationContext);
 export const NotificationProvider = ({ children }) => {
   const { data: client } = useWeb3InboxClient();
   const { address } = useWeb3ModalAccount();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const addressData = `eip155:1:${address}`;
 
   const handleNotification = async ({ addressData }) => {
@@ -40,7 +41,7 @@ export const NotificationProvider = ({ children }) => {
       console.log(`User's Timezone: ${userTimeZone}`);
       const time = `${hours}:${minutes}`;
       const date = `${day}-${month}-${year}`;
-      const response = await fetch(`http://localhost:3001/notification`, {
+      const response = await fetch(`${backendUrl}/notification`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

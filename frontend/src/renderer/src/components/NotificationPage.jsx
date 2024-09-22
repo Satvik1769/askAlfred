@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
-import notificationIcon from "/notifications.svg";
-import notificationRing from "/notification_ring.svg";
-import notificationStop from "/notification_stop.png";
+import notificationIcon from "../assets/notifications.svg";
+import notificationRing from "../assets/notification_ring.svg";
+import notificationStop from "../assets/notification_stop.png";
 import { useName } from "../Context/NameContext";
 
 import "../button.css";
@@ -445,7 +445,7 @@ export default function NotificationPage() {
                 className="bg-white rounded-full absolute "
                 id="circular3"
               ></div>
-              <img src="/alfred2.png" id="alfred" />
+              <img src="/src/assets/alfred2.png" id="alfred" />
             </div>
           </div>
         </div>
