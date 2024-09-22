@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "main": "./out/main/main.js",
   "scripts": {
-    "dev": "electron-vite dev -w",
-    "build": "electron-vite build",
+    "dev": "vite",
+    "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
