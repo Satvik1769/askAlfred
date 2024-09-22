@@ -323,7 +323,7 @@ const SwapInterface = () => {
                 id="circular3"
               ></div>
 
-              <img src="/src/assets/alfred2.png" id="alfred" />
+              <img src="/alfred2.png" id="alfred" />
             </div>
           </div>
         </div>
@@ -373,7 +373,7 @@ const SwapInterface = () => {
                 className="bg-white rounded-full absolute "
                 id="circular3"
               ></div>
-              <img src="/src/assets/alfred2.png" id="alfred" />
+              <img src="/alfred2.png" id="alfred" />
             </div>
           </div>
         </div>

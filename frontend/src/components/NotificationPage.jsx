@@ -445,7 +445,7 @@ export default function NotificationPage() {
                 className="bg-white rounded-full absolute "
                 id="circular3"
               ></div>
-              <img src="/src/assets/alfred2.png" id="alfred" />
+              <img src="/alfred2.png" id="alfred" />
             </div>
           </div>
         </div>

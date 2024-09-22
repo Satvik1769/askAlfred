@@ -40,7 +40,7 @@ export default function NavigationBar({ navigation }) {
             <div className="flex flex-shrink-0 items-center">
               <img
                 alt="askAlfred"
-                src="/src/assets/cropped_image.png"
+                src="/cropped_image.png"
                 className="h-8 w-auto"
               />
               <h2 className="text-slate-100 mx-2">askAlfred</h2>

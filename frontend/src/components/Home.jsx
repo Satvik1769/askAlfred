@@ -220,7 +220,7 @@ const Home = () => {
           </div>
           <div className="flex lg:max-w-[600px] md:w-full justify-center">
             <img
-              src="/src/assets/alfred2.png"
+              src="/alfred2.png"
               alt="Alfred the butler"
               className="lg:w-[300px] md:w-[200px] animate-fadeInRight "
             />
@@ -270,7 +270,7 @@ const Home = () => {
                   className="bg-white rounded-full absolute "
                   id="circular3"
                 ></div>
-                <img src="/src/assets/alfred2.png" id="alfred" />
+                <img src="/alfred2.png" id="alfred" />
               </div>
             </div>
           </div>
@@ -281,7 +281,7 @@ const Home = () => {
         >
           <div className="flex justify-center">
             <img
-              src="/src/assets/portfolio.webp"
+              src="/portfolio.webp"
               alt="Portfolio"
               className=" mt-20 w-400 lg:h-200 md:w-200 animate-fadeInLeft "
               style={{ height: "350px", width: "600px" }}
@@ -320,10 +320,7 @@ const Home = () => {
             {networks.map((network) => {
               return (
                 <div class="flex flex-col text-white items-center text-center">
-                  <img
-                    src={`/src/assets/${network}.webp`}
-                    style={{ height: 100 }}
-                  />
+                  <img src={`/${network}.webp`} style={{ height: 100 }} />
                   <h1>{network}</h1>
                 </div>
               );

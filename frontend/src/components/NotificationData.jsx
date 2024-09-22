@@ -76,7 +76,7 @@ export default function NotificationData({ handleButtonClick }) {
                     className="flex items-center w-full p-3.5 mt-2 rounded-lg bg-gray-700 text-white border border-gray-500 hover:bg-gray-600"
                   >
                     <img
-                      src="/src/assets/cropped_image.png"
+                      src="/cropped_image.png"
                       alt="Notification"
                       className="h-12"
                     />
